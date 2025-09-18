@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    container_name: clinic-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_PATH=/app/database/clinic.db
+      - JWT_SECRET=clinic-companion-secret-key
+      - JWT_EXPIRES_IN=7d
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - ./backend/database:/app/database
+    command: npm run start:dev
+    networks:
+      - clinic-network
+
+  # Frontend
+  frontend:
+    container_name: clinic-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3001/api
+      - NEXT_PUBLIC_APP_NAME=Clinic Companion
+      - NEXT_PUBLIC_APP_VERSION=4.0.0
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+    depends_on:
+      - backend
+    networks:
+      - clinic-network
+
+  # PostgreSQL (opcional - para produção)
+  postgres:
+    container_name: clinic-postgres
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=clinic
+      - POSTGRES_PASSWORD=clinic123
+      - POSTGRES_DB=clinic_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - clinic-network
+    profiles:
+      - production
+
+  # Redis (opcional - para cache)
+  redis:
+    container_name: clinic-redis
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - clinic-network
+    profiles:
+      - production
+
+networks:
+  clinic-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
