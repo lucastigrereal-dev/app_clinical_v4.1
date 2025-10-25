@@ -24,7 +24,6 @@ import { EmailModule } from './modules/email/email.module';
 import { JobsModule } from './modules/jobs/jobs.module';
 import { ReportsModule } from './modules/reports/reports.module';
 import { PaymentsModule } from './modules/payments/payments.module';
-
 @Module({
   imports: [
     // Configuration
@@ -113,7 +112,8 @@ import { PaymentsModule } from './modules/payments/payments.module';
     AnalyticsModule,
     // 🆕 v5.0.0: Complete Enterprise Suite
     EmailModule,
-    JobsModule,
+    // TODO: Re-enable when Redis is configured (set REDIS_ENABLED=true)
+    // JobsModule,
     ReportsModule,
     PaymentsModule,
   ],
