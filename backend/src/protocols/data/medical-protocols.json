@@ -1,0 +1,294 @@
+[
+  {
+    "procedureName": "Lipoaspiração",
+    "procedureId": "lipoaspiracao",
+    "category": "aesthetic",
+    "duration": "6_months",
+    "totalDays": 180,
+    "totalMilestones": 82,
+    "metadata": {
+      "averageRecoveryTime": "2_months",
+      "riskLevel": "medium",
+      "patientSatisfaction": 0.94,
+      "complicationRate": 0.08,
+      "tags": [
+        "cirurgia",
+        "corpo",
+        "estética"
+      ],
+      "searchKeywords": [
+        "lipo",
+        "gordura",
+        "shape",
+        "corpo"
+      ]
+    },
+    "milestones": [
+      {
+        "id": "lipoaspiracao_d0_morning",
+        "dayOffset": 0,
+        "timeOfDay": "morning",
+        "title": "D+0: Primeiro Dia Pós-Lipo",
+        "message": "Bom dia! Hoje é o primeiro dia da sua nova jornada. É normal sentir desconforto e inchaço.",
+        "priority": "high",
+        "instructions": [
+          "Use a cinta compressiva 24h por dia",
+          "Repouso absoluto nas primeiras 24h",
+          "Tome a medicação conforme prescrito",
+          "Hidrate-se bastante"
+        ],
+        "warnings": [
+          "Hematomas e inchaço são normais",
+          "Dor leve a moderada é esperada",
+          "Não faça esforços físicos"
+        ],
+        "tips": [
+          "Mantenha-se hidratada",
+          "Alimente-se de forma leve",
+          "Peça ajuda para atividades básicas"
+        ]
+      },
+      {
+        "id": "lipoaspiracao_d7_morning",
+        "dayOffset": 7,
+        "timeOfDay": "morning",
+        "title": "D+7: Uma Semana de Sucesso",
+        "message": "Parabéns! Uma semana completa! O inchaço está diminuindo e você já pode ver primeiros resultados.",
+        "priority": "medium",
+        "instructions": [
+          "Continue usando a cinta compressiva",
+          "Inicie caminhadas leves (10-15 min)",
+          "Drene a região conforme orientação",
+          "Retorne para avaliação médica"
+        ],
+        "warnings": [
+          "Inchaço ainda presente é normal",
+          "Não retome atividades intensas",
+          "Atenção a sinais de infecção"
+        ],
+        "tips": [
+          "Fotografe seu progresso",
+          "Mantenha alimentação balanceada",
+          "Hidratação é fundamental"
+        ]
+      }
+    ]
+  },
+  {
+    "procedureName": "Rinoplastia",
+    "procedureId": "rinoplastia",
+    "category": "aesthetic",
+    "duration": "12_months",
+    "totalDays": 365,
+    "totalMilestones": 52,
+    "metadata": {
+      "averageRecoveryTime": "6_months",
+      "riskLevel": "medium",
+      "patientSatisfaction": 0.92,
+      "complicationRate": 0.12,
+      "tags": [
+        "cirurgia",
+        "face",
+        "nariz",
+        "estética"
+      ],
+      "searchKeywords": [
+        "rinoplastia",
+        "nariz",
+        "rino",
+        "septoplastia"
+      ]
+    },
+    "milestones": [
+      {
+        "id": "rinoplastia_d0_morning",
+        "dayOffset": 0,
+        "timeOfDay": "morning",
+        "title": "D+0: Primeiro Dia Pós-Rinoplastia",
+        "message": "Olá! Hoje marca o início da sua transformação. Respire pela boca e tenha paciência.",
+        "priority": "high",
+        "instructions": [
+          "Mantenha a cabeça elevada (45°)",
+          "Use compressas frias nas primeiras 48h",
+          "Não assoar o nariz por 2 semanas",
+          "Tome a medicação prescrita"
+        ],
+        "warnings": [
+          "Inchaço e roxidão são esperados",
+          "Dificuldade para respirar é temporária",
+          "Evite abaixar a cabeça"
+        ],
+        "tips": [
+          "Durma com travesseiro alto",
+          "Hidrate-se bem",
+          "Alimente-se de forma leve"
+        ]
+      },
+      {
+        "id": "rinoplastia_d7_morning",
+        "dayOffset": 7,
+        "timeOfDay": "morning",
+        "title": "D+7: Remoção do Gesso",
+        "message": "Hoje é o dia! O gesso será removido e você verá seu novo nariz pela primeira vez!",
+        "priority": "high",
+        "instructions": [
+          "Retorne à clínica para remoção do gesso",
+          "Continue com cuidados delicados",
+          "Evite óculos pesados",
+          "Mantenha limpeza suave"
+        ],
+        "warnings": [
+          "Ainda haverá inchaço residual",
+          "Não se assuste com o resultado inicial",
+          "Evite exposição solar"
+        ],
+        "tips": [
+          "Fotografe o progresso",
+          "Seja paciente com os resultados",
+          "Continue com alimentação leve"
+        ]
+      }
+    ]
+  },
+  {
+    "procedureName": "Abdominoplastia",
+    "procedureId": "abdominoplasty",
+    "category": "complex",
+    "duration": "12_months",
+    "totalDays": 365,
+    "totalMilestones": 1,
+    "metadata": {
+      "averageRecoveryTime": "12_months",
+      "riskLevel": "medium",
+      "patientSatisfaction": 0.9,
+      "complicationRate": 0.1,
+      "tags": [
+        "cirurgia",
+        "estética"
+      ],
+      "searchKeywords": [
+        "abdominoplastia"
+      ]
+    },
+    "milestones": [
+      {
+        "id": "day_1_morning_abd",
+        "dayOffset": 1,
+        "timeOfDay": "morning",
+        "title": "Primeiro Dia - Cuidados Especiais",
+        "message": "Bom dia, linda! Hoje é o primeiro dia da sua nova jornada. Vamos juntas garantir uma recuperação perfeita! 💖",
+        "priority": "critical",
+        "instructions": [
+          "Manter posição semi-sentada para dormir",
+          "Usar cinta compressiva 24h por dia",
+          "Drenar os drenos conforme orientação",
+          "Tomar antibiótico e anti-inflamatório no horário"
+        ],
+        "warnings": [
+          "NÃO fazer movimentos bruscos",
+          "NÃO levantar braços acima da cabeça",
+          "NÃO ficar em pé por longos períodos"
+        ],
+        "tips": [
+          "Tenha uma poltrona confortável para descansar",
+          "Peça ajuda para todas as atividades",
+          "Mantenha medicamentos ao alcance"
+        ]
+      }
+    ]
+  },
+  {
+    "procedureName": "Mamoplastia de Aumento",
+    "procedureId": "breast_augmentation",
+    "category": "aesthetic",
+    "duration": "6_months",
+    "totalDays": 180,
+    "totalMilestones": 1,
+    "metadata": {
+      "averageRecoveryTime": "6_months",
+      "riskLevel": "medium",
+      "patientSatisfaction": 0.9,
+      "complicationRate": 0.1,
+      "tags": [
+        "cirurgia",
+        "estética"
+      ],
+      "searchKeywords": [
+        "mamoplastia de aumento"
+      ]
+    },
+    "milestones": [
+      {
+        "id": "day_1_morning_breast",
+        "dayOffset": 1,
+        "timeOfDay": "morning",
+        "title": "Primeiro Dia - Novos Contornos",
+        "message": "Bom dia, linda! Hoje você acorda com seus novos seios! Vamos cuidar deles como verdadeiras joias! 💎",
+        "priority": "critical",
+        "instructions": [
+          "Usar sutiã pós-cirúrgico 24h por dia",
+          "Dormir de barriga para cima sempre",
+          "Não levantar os braços acima dos ombros",
+          "Fazer movimentos suaves com os braços"
+        ],
+        "warnings": [
+          "NÃO dormir de lado ou bruços",
+          "NÃO carregar peso algum",
+          "NÃO fazer movimentos bruscos dos braços"
+        ],
+        "tips": [
+          "Coloque travesseiros nas laterais para não virar",
+          "Tenha ajuda para atividades básicas",
+          "Use roupas que abrem na frente"
+        ]
+      }
+    ]
+  },
+  {
+    "procedureName": "Blefaroplastia",
+    "procedureId": "blepharoplasty",
+    "category": "minimally_invasive",
+    "duration": "3_months",
+    "totalDays": 90,
+    "totalMilestones": 1,
+    "metadata": {
+      "averageRecoveryTime": "3_months",
+      "riskLevel": "medium",
+      "patientSatisfaction": 0.9,
+      "complicationRate": 0.1,
+      "tags": [
+        "cirurgia",
+        "estética"
+      ],
+      "searchKeywords": [
+        "blefaroplastia"
+      ]
+    },
+    "milestones": [
+      {
+        "id": "day_1_morning_blephar",
+        "dayOffset": 1,
+        "timeOfDay": "morning",
+        "title": "Primeiro Dia - Cuidando do Olhar",
+        "message": "Bom dia, querida! Seus olhos estão em processo de renovação. Vamos cuidar deles com carinho especial! 👁️✨",
+        "priority": "critical",
+        "instructions": [
+          "Aplicar gelo nas pálpebras 15min a cada hora",
+          "Usar colírio conforme prescrição médica",
+          "Dormir com a cabeceira elevada",
+          "Evitar esforço visual (TV, celular, leitura)"
+        ],
+        "warnings": [
+          "NÃO esfregar os olhos",
+          "NÃO usar maquiagem",
+          "NÃO dirigir nas primeiras 48h"
+        ],
+        "tips": [
+          "Use óculos escuros sempre que sair",
+          "Mantenha ambiente com luz suave",
+          "Tenha compressas geladas prontas"
+        ]
+      }
+    ]
+  }
+]

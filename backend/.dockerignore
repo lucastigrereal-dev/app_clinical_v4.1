@@ -1,0 +1,61 @@
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# Build outputs
+dist
+build
+.next
+out
+
+# Development
+.env.local
+.env.development
+.env.test
+*.log
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+docs
+README.md
+
+# Tests
+test
+tests
+*.test.ts
+*.spec.ts
+coverage
+
+# CI/CD
+.github
+.gitlab-ci.yml
+
+# Data
+data
+dataraw
+*.csv
+*.json.gz
+
+# EXCEPTION: Allow protocols data (required for Medical Protocols Service)
+!src/protocols/data/*.json
+
+# Misc
+.DS_Store
+Thumbs.db
+.cache
+tmp
+temp
