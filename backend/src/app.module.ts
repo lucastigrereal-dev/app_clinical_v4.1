@@ -32,16 +32,13 @@ import { PaymentsModule } from './modules/payments/payments.module';
       isGlobal: true,
       envFilePath: '.env',
     }),
-
     // Cache (must be after ConfigModule)
     CacheModule,
-
     // Database
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const databaseUrl = configService.get('DATABASE_URL');
-
         // Railway/Produção: usa DATABASE_URL
         // Desenvolvimento local: usa variáveis separadas
         const config = databaseUrl
@@ -57,7 +54,6 @@ import { PaymentsModule } from './modules/payments/payments.module';
               password: configService.get('DATABASE_PASSWORD', 'clinic_password'),
               database: configService.get('DATABASE_NAME', 'clinic_companion'),
             };
-
         return {
           ...config,
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
@@ -72,42 +68,41 @@ import { PaymentsModule } from './modules/payments/payments.module';
         };
       },
     }),
-
     // Rate limiting
     ThrottlerModule.forRoot([{
       ttl: 60000,
       limit: 100,
     }]),
-
-    // Bull (Background Jobs)
-    BullModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        redis: {
-          host: configService.get('REDIS_HOST', 'localhost'),
-          port: configService.get('REDIS_PORT', 6379),
-          password: configService.get('REDIS_PASSWORD'),
-          // Graceful error handling - app continues without Redis
-          retryStrategy: (times) => {
-            if (times > 3) {
-              console.warn('⚠️ Redis unavailable - running without background jobs');
-              return null; // Stop retrying
-            }
-            return Math.min(times * 1000, 3000);
-          },
-        },
-      }),
-    }),
-
+    // Bull (Background Jobs) - Conditional based on REDIS_ENABLED
+    ...(process.env.REDIS_ENABLED === 'true'
+      ? [
+          BullModule.forRootAsync({
+            inject: [ConfigService],
+            useFactory: (configService: ConfigService) => ({
+              redis: {
+                host: configService.get('REDIS_HOST', 'localhost'),
+                port: configService.get('REDIS_PORT', 6379),
+                password: configService.get('REDIS_PASSWORD'),
+                // Graceful error handling - app continues without Redis
+                retryStrategy: (times) => {
+                  if (times > 3) {
+                    console.warn('⚠️ Redis unavailable - running without background jobs');
+                    return null; // Stop retrying
+                  }
+                  return Math.min(times * 1000, 3000);
+                },
+              },
+            }),
+          }),
+        ]
+      : []),
     // Auth module (MUST be first)
     AuthModule,
-
     // Feature modules
     ProceduresModule,
     AlertsModule,
     ProtocolsModule,
     EmotionalModule,
-
     // 🆕 v4.0.0: Novos módulos enterprise
     PatientsModule,
     AppointmentsModule,
@@ -116,7 +111,6 @@ import { PaymentsModule } from './modules/payments/payments.module';
     ImageAnalysisModule,
     MedicalAIModule,
     AnalyticsModule,
-
     // 🆕 v5.0.0: Complete Enterprise Suite
     EmailModule,
     JobsModule,
