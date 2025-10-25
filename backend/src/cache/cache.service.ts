@@ -21,16 +21,33 @@ export class CacheService implements OnModuleInit, OnModuleDestroy {
   constructor(private readonly configService: ConfigService) {}
 
   async onModuleInit() {
+    // Check if Redis is enabled
+    const redisEnabled = this.configService.get('REDIS_ENABLED', 'false');
+
+    if (redisEnabled === 'false' || redisEnabled === false) {
+      this.logger.warn('⚠️ Redis DISABLED - Running in NO-CACHE mode');
+      this.logger.warn('💡 Set REDIS_ENABLED=true to enable caching');
+      this.redis = null;
+      return; // Don't initialize Redis at all
+    }
+
     try {
       this.redis = new Redis({
         host: this.configService.get('REDIS_HOST', 'localhost'),
         port: parseInt(this.configService.get('REDIS_PORT', '6379'), 10),
         password: this.configService.get('REDIS_PASSWORD'),
         retryStrategy: (times) => {
+          // Stop retrying after 3 attempts
+          if (times > 3) {
+            this.logger.error('❌ Redis max retries reached, disabling cache');
+            return null; // Stop retrying
+          }
           const delay = Math.min(times * 50, 2000);
           return delay;
         },
         maxRetriesPerRequest: 3,
+        lazyConnect: true, // Don't connect automatically
+        enableOfflineQueue: false, // Don't queue commands when offline
       });
 
       this.redis.on('connect', () => {
@@ -45,12 +62,29 @@ export class CacheService implements OnModuleInit, OnModuleDestroy {
         this.logger.warn('🔄 Redis reconnecting...');
       });
 
+      // Explicitly connect with timeout
+      await Promise.race([
+        this.redis.connect(),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Redis connection timeout')), 5000)
+        )
+      ]);
+
       await this.redis.ping();
       this.logger.log('🎯 Cache Service initialized with Redis');
     } catch (error) {
-      this.logger.error('Failed to initialize Redis:', error);
-      // Create a mock Redis client for development
+      this.logger.error('Failed to initialize Redis:', error.message);
       this.logger.warn('⚠️ Running in NO-CACHE mode');
+
+      // Cleanup failed connection
+      if (this.redis) {
+        try {
+          this.redis.disconnect();
+        } catch (e) {
+          // Ignore cleanup errors
+        }
+        this.redis = null;
+      }
     }
   }
 
