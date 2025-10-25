@@ -25,11 +25,11 @@ export class PaymentsService {
       this.logger.warn('💡 Set STRIPE_SECRET_KEY in .env to enable Stripe payments.');
       // Use test key for development
       this.stripe = new Stripe('sk_test_dummy_key_for_development', {
-        apiVersion: '2024-12-18.acacia',
+        apiVersion: '2025-09-30.clover',
       });
     } else {
       this.stripe = new Stripe(stripeSecretKey, {
-        apiVersion: '2024-12-18.acacia',
+        apiVersion: '2025-09-30.clover',
       });
       this.logger.log('💳 Stripe initialized successfully');
     }
@@ -227,7 +227,13 @@ export class PaymentsService {
     if (payment) {
       payment.status = 'succeeded';
       payment.paidAt = new Date();
-      payment.receiptUrl = paymentIntent.charges?.data[0]?.receipt_url || null;
+
+      // Retrieve with expand to get charges
+      const expandedIntent: any = await this.stripe.paymentIntents.retrieve(paymentIntent.id, {
+        expand: ['charges.data.receipt_url'],
+      });
+
+      payment.receiptUrl = expandedIntent.charges?.data?.[0]?.receipt_url || null;
       await this.paymentRepository.save(payment);
 
       this.logger.log(`✅ Payment succeeded webhook processed: ${paymentIntent.id}`);

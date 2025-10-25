@@ -9,6 +9,7 @@ export interface CreateNotificationDto {
   message: string;
   type?: NotificationType;
   read: boolean;
+  metadata?: any;
 }
 
 @Injectable()

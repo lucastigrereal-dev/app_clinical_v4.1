@@ -17,7 +17,7 @@ export class SeedAdminUser1761100000000 implements MigrationInterface {
 
     // Inserir admin user (se não existir)
     await queryRunner.query(`
-      INSERT INTO users (email, password, name, role, created_at, updated_at)
+      INSERT INTO users (email, password, name, role, "createdAt", "updatedAt")
       SELECT
         'admin@clinic.com',
         '${passwordHash}',

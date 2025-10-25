@@ -37,4 +37,12 @@ export class CreateNotificationDto {
   @IsEnum(NotificationType)
   @IsOptional()
   type?: NotificationType;
+
+  @ApiProperty({
+    example: { appointmentId: '123', patientId: '456' },
+    description: 'Dados adicionais da notificação',
+    required: false,
+  })
+  @IsOptional()
+  metadata?: any;
 }
