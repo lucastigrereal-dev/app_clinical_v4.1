@@ -4,7 +4,7 @@ import { Controller, Post } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from '../modules/users/entities/user.entity';
+import { User, UserRole } from '../modules/users/entities/user.entity';
 import { Public } from '../modules/auth/decorators/public.decorator';
 import * as bcrypt from 'bcrypt';
 
@@ -44,7 +44,7 @@ export class SeedController {
       email: 'admin@clinic.com',
       password: passwordHash,
       name: 'Admin User',
-      role: 'admin'
+      role: UserRole.ADMIN
     });
 
     await this.usersRepository.save(admin);
