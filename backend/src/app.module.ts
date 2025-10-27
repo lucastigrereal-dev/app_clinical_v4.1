@@ -11,6 +11,7 @@ import { AlertsModule } from './modules/alerts/alerts.module';
 import { ProtocolsModule } from './modules/protocols/protocols.module';
 import { EmotionalModule } from './modules/emotional/emotional.module';
 import { CacheModule } from './cache/cache.module';
+import { HealthModule } from './health/health.module';
 // 🆕 v4.0.0: Novos módulos migrados do appclinicav3
 import { PatientsModule } from './modules/patients/patients.module';
 import { AppointmentsModule } from './modules/appointments/appointments.module';
@@ -33,6 +34,8 @@ import { PaymentsModule } from './modules/payments/payments.module';
     }),
     // Cache (must be after ConfigModule)
     CacheModule,
+    // Health check (public endpoint for Railway)
+    HealthModule,
     // Database
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
